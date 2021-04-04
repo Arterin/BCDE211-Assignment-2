@@ -5,10 +5,10 @@ const STORAGE_KEY = 'candidates'
 
 // FEATURE 2. Add a part.
 class Candidate{
-    constructor(newPartyName, newCandidateName, newVotes) {
+    constructor(newPartyName, newCandidateName, newVotes = 0) {
         this.candidateName = newCandidateName
         this.partyName = newPartyName
-        this.votes = newVotes || 0 // FEATURE 13. Provide default values.
+        this.votes = newVotes // FEATURE 13. Provide default values.
     }
 }
 
