@@ -8,8 +8,7 @@ class Candidate{
     constructor(newPartyName, newCandidateName, newVotes) {
         this.candidateName = newCandidateName
         this.partyName = newPartyName
-        this.votes = newVotes
-        this.id = null
+        this.votes = newVotes || 0 // FEATURE 13. Provide default values.
     }
 }
 
@@ -24,10 +23,9 @@ class Electorate {
 
     // FEATURE 2. Add a part.
     setNewCandidate (newPartyName, newCandidateName, newVotes) {
-        if (!this.candidates.some(e => e.candidateName === newCandidateName)) {
-            // The candidate doesn't exist in the electorate, so add them
+        if (!this.candidates.some(i => i.candidateName === newCandidateName)) {
+            // The candidate doesn't exist in the electorate, so add them. candidateName is unique.
             var newCandidate = new Candidate(newPartyName, newCandidateName, newVotes)
-            newCandidate.id = this.candidates.length + 1
             this.candidates.push(newCandidate)
         }
     }
