@@ -14,7 +14,6 @@ class Candidate{
 }
 
 // FEATURE 1. Create a whole that acts as a facade for parts.
-// FEATURE 2. Add a part.
 class Electorate {
     constructor (newElectorateName) {
         this.electorateName = newElectorateName
@@ -22,7 +21,6 @@ class Electorate {
         // Following attributes are for supporting editing candidateName
         this.editedCandidateIndex = null
         this.beforeEditNameCache = ''
-
     }
 
     // FEATURE 2. Add a part.
@@ -35,7 +33,6 @@ class Electorate {
     }
 
     // FEATURE 3. Sort parts.
-    // TODO clean this mess up, not one line.
     sortCandidatesByVoteCount () {
         // Sorts high to low by votes, sorts alphabetically by name if tied on votes.
         return this.candidates.sort((a, b) => (a.votes > b.votes) ? -1 : (a.votes === b.votes) ? ((a.candidateName > b.candidateName) ? 1 : -1) : 1)
@@ -52,13 +49,12 @@ class Electorate {
         this.candidates.splice(index, 1)
     }
 
-    //  FEATURE 6. Save all parts to LocalStorage.
+    // FEATURE 6. Save all parts to LocalStorage.
     saveCandidates () {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.candidates))
     }
 
     // FEATURE 7. Load all parts from LocalStorage.
-    // FEATURE 13. Provide default values.
     loadCandidates () {
         this.candidates = JSON.parse(localStorage.getItem(STORAGE_KEY))
     }
@@ -82,7 +78,7 @@ class Electorate {
         this.editedCandidateIndex = null
     }
 
-    // FEATURE 8. Update/edit a part.
+    // FEATURE 9. Update/edit a part.
     revertEditingCandidateName () {
         // Only reverts last name edited
         this.candidates[this.editedCandidateIndex].candidateName = this.beforeEditNameCache
