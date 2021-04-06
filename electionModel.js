@@ -1,5 +1,6 @@
-/* globals localStorage */
-
+var LocalStorage = require('node-localstorage').LocalStorage
+localStorage = new LocalStorage("./storage")
+// I'm aware that using 'localStorage' with node is pretty stupid and I should really be using a database instead
 // FEATURE 13. Provide default values
 const STORAGE_KEY = 'candidates'
 
@@ -28,7 +29,7 @@ class Electorate {
     setNewCandidate (newCandidateName, newPartyName, newVotes) {
         if (!this.candidates.some(i => i.candidateName === newCandidateName)) {
             // The candidate doesn't exist in the electorate, so add them. candidateName is unique.
-            var newCandidate = new Candidate(newCandidateName, newPartyName, newVotes)
+            var newCandidate = JSON.parse(JSON.stringify(new Candidate(newCandidateName, newPartyName, newVotes)))
             this.candidates.push(newCandidate)
         }
     }
@@ -59,7 +60,7 @@ class Electorate {
     // FEATURE 7. Load all parts from LocalStorage.
     // FEATURE 13. Provide default values.
     loadCandidates () {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+        this.candidates = JSON.parse(localStorage.getItem(STORAGE_KEY))
     }
 
     // FEATURE 8. Update/edit a part. TODO validate input
@@ -107,5 +108,6 @@ class Electorate {
 
 module.exports = {
     Candidate : Candidate,
-    Electorate : Electorate
+    Electorate : Electorate,
+    STORAGE_KEY : STORAGE_KEY
 }
