@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "author": "Arterin",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.3.4",
