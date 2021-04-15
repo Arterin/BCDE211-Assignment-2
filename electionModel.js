@@ -131,15 +131,6 @@ class Electorate {
 
 }
 
-theElectorate = new Electorate("buh");
-theElectorate.setNewCandidate("tim", "testParty1", 1058);
-theElectorate.setNewCandidate("tam", "testParty2", 51);
-theElectorate.setNewCandidate("tom", "testParty3", 50);
-console.log(theElectorate.candidates)
-var leader = theElectorate.getLeadingCandidate()
-console.log(leader)
-
-
 module.exports = {
     Candidate: Candidate,
     Electorate: Electorate,
