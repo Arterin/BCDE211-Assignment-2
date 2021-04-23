@@ -1,25 +1,12 @@
 /* globals describe it xdescribe xit beforeEach expect TodoList localStorage STORAGE_KEY */
-var assert = require("assert");
-var assert = require("chai").assert;
-var expect = require("chai").expect;
-var should = require("chai").should();
-var Electorate = require("../electionModel.js").Electorate;
-var Candidate = require("../electionModel.js").Candidate;
-var STORAGE_KEY = require("../electionModel.js").STORAGE_KEY;
-var LocalStorage = require("node-localstorage").LocalStorage;
+// noinspection JSUnresolvedVariable,JSUndeclaredVariable
+
+let expect = require("chai").expect;
+let Electorate = require("../electionModel.js").Electorate;
+let STORAGE_KEY = require("../electionModel.js").STORAGE_KEY;
+let LocalStorage = require("node-localstorage").LocalStorage;
 
 describe("electionModel", function () {
-    var theElectorate;
-    var localStorage;
-
-    function getCandidateNames(allCandidates) {
-        const allCandidateNames = [];
-        for (const aCandidate of allCandidates) {
-            allCandidateNames.push(aCandidate.candidateName);
-        }
-        return allCandidateNames;
-    }
-
     beforeEach(function () {
         theElectorate = new Electorate("testElectorate");
         localStorage = new LocalStorage("./storage");
@@ -29,7 +16,6 @@ describe("electionModel", function () {
     // FEATURE 2. Add a part.
     describe("setNewCandidate", function () {
         describe("A single candidate is added.", function () {
-            var theCandidate;
             beforeEach(function () {
                 theElectorate.setNewCandidate("bob", "testParty", 1);
                 theCandidate = theElectorate.candidates[0];
@@ -75,12 +61,12 @@ describe("electionModel", function () {
         });
 
         it("Should save a candidate from storage when there is one candidate.", function () {
-            var electorateJSON = localStorage.getItem(STORAGE_KEY);
+            let electorateJSON = localStorage.getItem(STORAGE_KEY);
             expect(electorateJSON).to.exist;
         });
 
         it("Should have the correct JSON for the saved candidate in localStorage.", function () {
-            var electorateJSON = localStorage.getItem(STORAGE_KEY);
+            let electorateJSON = localStorage.getItem(STORAGE_KEY);
             expect(electorateJSON).to.equal(
                 '[{"candidateName":"blub","partyName":"testParty1","votes":100}]'
             );
@@ -100,12 +86,13 @@ describe("electionModel", function () {
             theElectorate2 = new Electorate("testElectorate");
             // Load.
             theElectorate2.loadCandidates();
-            var loadedCandidates = theElectorate2.candidates;
+            let loadedCandidates = theElectorate2.candidates;
             expect(loadedCandidates.length).to.equal(1);
         });
 
         it("Should have the correct array for the loaded candidate in .candidates.", function () {
             // New blank electorate.
+            // noinspection JSUndeclaredVariable
             theElectorate3 = new Electorate("testElectorate");
             // Load.
             theElectorate3.loadCandidates();
