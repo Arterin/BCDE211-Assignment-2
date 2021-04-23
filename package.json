@@ -4,7 +4,7 @@
   "description": "BCDE211 assignment 2",
   "main": "index.js",
   "scripts": {
-    "test": "mocha /Users/vivian/documents/bcde211/assignment2/test/electionModelTest.js"
+    "test": "mocha ./test/electionModelTest.js"
   },
   "author": "Arterin",
   "license": "ISC",
